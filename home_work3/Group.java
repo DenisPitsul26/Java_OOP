@@ -91,9 +91,6 @@ public class Group {
             if (student != null) {
                 result.append(student.toString());
                 result.append("\n");
-            } else {
-                result.append("null");
-                result.append("\n");
             }
         }
         return result.toString();
