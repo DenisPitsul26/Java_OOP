@@ -10,8 +10,6 @@ public class Main {
         Group myGroup = new Group("Java_OOP");
         Voenkom voenkom;
         voenkom = myGroup::getPrizovnik;
-        File out = new File("Group.xls");
-
         try {
             System.out.println(myGroup.addStudent());
             System.out.println(myGroup.addStudent(new Student("Ivan", "Tkach", 18, false, 1126332)));
@@ -31,12 +29,7 @@ public class Main {
         }
 
 
-        myGroup.sort(1);
-        try(Writer os = new FileWriter(out)){
-            os.write(myGroup.toString());
-        } catch (IOException e){
-            System.out.println(e);
-        }
+        myGroup.saveToFile("Group.xls");
 
 
 

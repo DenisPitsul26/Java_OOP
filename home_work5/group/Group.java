@@ -1,6 +1,10 @@
 package lesson5.home_work5.group;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 
 public class Group {
@@ -200,27 +204,36 @@ public class Group {
         }
 
         Student[] tempGroup = new Student[n];
-        n=0;
+        n = 0;
 
         for (Student student : group) {
             if (student != null && !student.isSex() && student.getAge() > 18) {
-                tempGroup[n]=student;
+                tempGroup[n] = student;
                 n++;
             }
         }
         return tempGroup;
     }
-        @Override
-        public String toString () {
-            //   sort();
-            StringBuilder result = new StringBuilder();
-            result.append("Last Name\tFirst Name\tAge\tGroup name\tID\n");
-            for (Student student : group) {
-                if (student != null) {
-                    result.append(student.toString());
-                    result.append("\n");
-                }
-            }
-            return result.toString();
+
+    public void saveToFile(String name) {
+        try (Writer os = new FileWriter(new File(name))) {
+            os.write(toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    @Override
+    public String toString() {
+        //   sort();
+        StringBuilder result = new StringBuilder();
+        result.append("Last Name\tFirst Name\tAge\tGroup name\tID\n");
+        for (Student student : group) {
+            if (student != null) {
+                result.append(student.toString());
+                result.append("\n");
+            }
+        }
+        return result.toString();
+    }
+}
